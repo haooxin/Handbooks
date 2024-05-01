@@ -49,6 +49,16 @@ Backup File Location
 *   For NFS/CIFS storages, the location depends on the storage configuration.
 *   Check the storage configuration under `Datacenter -> Storage` in the Proxmox panel.
 
+How to Transfer a VM or LXC Container to Another Host
+-----------------------------------------------------
+
+To transfer a virtual machine or LXC container to another host that is not part of a cluster:
+
+1.  Perform a backup of the VM or container using the steps outlined above.
+2.  Copy the backup file to the target Proxmox server using SCP or another secure file transfer method.
+3.  On the target Proxmox server, go to the `Storage` where the backup file is located.
+4.  Select the backup file and use the `Restore` option to recreate the VM or container on the new host.
+
 Scheduling Automatic Backups
 ----------------------------
 
