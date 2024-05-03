@@ -33,14 +33,14 @@ Alternatively, make a backup of the VMs and LXC containers, clean up the node an
 
 ## How To:
 ### Solution I:
-To change the hostname of Proxmox you should first turn off all virtual machines or containers on Proxmox. Then change the hostname of the /etc /hosts file from “old-hostname.local old-hostname″ to “new-hostname.local new-hostname″ and the /etc/hostname file from “old-hostname″ to “new-hostname″.
+To change the hostname of Proxmox you should first turn off all virtual machines or containers on Proxmox. Then change the hostname of the /etc /hosts file from **“old-hostname.local old-hostname″** to **“new-hostname.local new-hostname″** and the **/etc/hostname** file from **“old-hostname″** to **“new-hostname″**.
 
  
-You can check how many nodes there are on Proxmox in the /etc/pve/nodes/ folder.
+You can check how many nodes there are on Proxmox in the **/etc/pve/nodes/** folder.
 
 To check node:
 ```
-# ls /etc/pve/nodes/
+ls /etc/pve/nodes/
 ```
 First backup the data in old-hostname:
 ```
@@ -59,14 +59,13 @@ Then need to move the file manually, and execute the below command:
 ```
 mv /etc/pve/nodes/old-hostname/qemu-server/100.conf /etc/pve/nodes/new-hostname/qemu-server/
 ``` 
-And make sure that the old hostname (old-hostname) node is deleted from the Proxmox dashboard. You can also delete the unnecessary nodes in the /etc/pve/nodes/old-hostname folder.
+And make sure that the **old hostname** node is deleted from the Proxmox dashboard. You can also delete the unnecessary nodes in the /etc/pve/nodes/old-hostname folder.
 
  
 ### Solution II:
  
 Changing the hostname of a Proxmox node finds a bit harder than changing the hostname of your typical Linux machine. However, you can follow the below simple steps to change the hostname.
 
- 
 First, change the hostname as you would do on any Debian-based machine.
 ```
 hostnamectl set-hostname NEW-HOSTNAME
@@ -75,18 +74,17 @@ Then update your host’s file:
 ```
 vim /etc/hosts
 ``` 
-By this Proxmox will momentarily create a new node with the new hostname:
+By this Proxmox will momentarily create a new node with the **new hostname**:
 ```
 ls -la /etc/pve/nodes
 ``` 
-Now you will find a folder with the same name as your old hostname and one with your new hostname. If you can’t find the folder with the new hostname, then you have to wait a bit or you can restart the machine.
+Now you will find a folder with the same name as your **old hostname** and one with your **new hostname**. If you can’t find the folder with the **new hostname**, then you have to wait a bit or you can restart the machine.
 
- 
 Before proceeding  it is better to take a backup of the current config files:
 ```
 cp -r /etc/pve/nodes/OLD-HOSTNAME /root/
 ``` 
-Next, you need to copy the configuration files for the old hostname to the new one.
+Next, you need to copy the configuration files for the **old hostname** to the **new one**.
 ```
 cp /root/OLD-HOSTNAME/qemu-server/* /etc/pve/nodes/NEW-HOSTNAME/qemu-server
 ``` 
